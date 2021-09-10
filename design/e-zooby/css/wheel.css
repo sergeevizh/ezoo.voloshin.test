@@ -1,0 +1,333 @@
+/* прячемблок на 10 секунд  */
+.deal-wheel.__hide {
+  transform: translate(100%, 0);
+}
+
+/* общий блок для всех элементов */
+.deal-wheel {
+  /* задаём переменные блока */
+  /* размеры колеса */
+  --size: clamp(200px, 60vmin, 550px);
+  /* настройки яркости и заливки фона секторов */
+  --lg-hs: 0 3%;
+  --lg-stop: 50%;
+  --lg: linear-gradient(
+    hsl(var(--lg-hs) 0%) 0 var(--lg-stop),
+    hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
+  );
+  /* добавляем позиционирование относительно других элементов */
+  position: fixed;
+  z-index: 100500;
+  transition: all ease-in-out 0.587s;
+  /* bottom: calc(var(--size) / 20); */
+  top: 50%;
+  transform: translate(0, -50%);
+  right: calc((var(--size) / 2) * -1);
+  /* подключаем сетку */
+  display: grid;
+  grid-gap: calc(var(--size) / 10);
+  /* выравниваем содержимое блока по центру */
+  align-items: center;
+  /* задаём имена областей внутри сетки */
+  grid-template-areas:
+    "spinner"
+    "trigger";
+  /* устанавливаем размер шрифта */
+  font-size: calc(var(--size) / 31);
+}
+
+.deal-wheel:hover .deal-wheel__close {
+  transform: translate(0%, 0%);
+  opacity: 1;
+}
+
+/* кнопка закрыть */
+.deal-wheel__close {
+  position: absolute;
+  top: 0;
+  left: calc(var(--size) / -15);
+  cursor: pointer;
+  background-color: #ffc300;
+  width: calc(var(--size) / 15);
+  height: calc(var(--size) / 15);
+  transition: all 0.589s ease-in-out;
+  opacity: 0.5;
+  opacity: 0;
+  transform: translate(0%, -100%);
+  z-index: 2;
+  border: 1px solid #3d3d3d;
+}
+
+/*  элементы кнопки закрыть */
+.deal-wheel__close span {
+  width: calc(var(--size) / 17);
+  height: calc(var(--size) / 100);
+  background: #4c4c4c;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.deal-wheel__close span:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.deal-wheel__close span:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.deal-wheel__close:hover {
+  opacity: 1;
+
+  /* transform: rotate(360deg); */
+}
+
+/* всё, что относится ко внутренним элементам главного блока, будет находиться в области сетки с названием spinner */
+.deal-wheel > * {
+  grid-area: spinner;
+}
+
+/* сам блок и кнопка будут находиться в области сетки с названием trigger и будут выровнены по центру */
+.deal-wheel .btn-spin {
+  grid-area: trigger;
+  justify-self: flex-start;
+}
+
+.deal-wheel::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: calc(var(--size) * 1.1);
+  height: calc(var(--size) * 1.1);
+  background: #ffc300;
+  border-radius: 50%;
+  z-index: -1;
+  top: calc(var(--size) / 1.99);
+  left: calc(var(--size) / 1.99);
+  transform: translate(-50%, -50%);
+  border: 1px solid #3d3d3d;
+}
+
+/* сектор колеса */
+.spinner {
+  border: 1px solid #3d3d3d;
+  /* добавляем относительное позиционирование */
+  position: relative;
+  /* подключаем сетку */
+  display: grid;
+  /* выравниваем всё по центру */
+  align-items: center;
+  /* добавляем элемент в сетку */
+  grid-template-areas: "spinner";
+  /* устанавливаем размеры */
+  width: var(--size);
+  height: var(--size);
+  /* поворачиваем элемент  */
+  transform: rotate(calc(var(--rotate, 25) * 1deg));
+  /* рисуем круглую обводку, а всё, что не поместится, — будет скрыто за кругом */
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+}
+
+/* всё, что внутри этого блока, будет находиться в области сетки с названием spinner */
+.spinner * {
+  grid-area: spinner;
+  color: #000;
+  font-weight: bold;
+  z-index: 2;
+}
+
+/* текст на секторах */
+.prize {
+  /* включаем «гибкую» вёрстку */
+  display: flex;
+  align-items: center;
+  /* задаём отступы от краёв блока */
+  padding: 0 calc(var(--size) / 6) 0 calc(var(--size) / 20);
+  /* устанавливаем размеры */
+  width: 50%;
+  height: 50%;
+  /* устанавливаем координаты, относительно которых будем вращать текст */
+  transform-origin: center right;
+  /* поворачиваем текст */
+  transform: rotate(var(--rotate));
+  /* запрещаем пользователю выделять мышкой текст на секторах */
+  user-select: none;
+  opacity: 1;
+  position: relative;
+}
+
+.prize::before {
+  border: 1px solid #ffc300;
+  display: block;
+  content: "";
+  width: calc(var(--size) / 30);
+  height: calc(var(--size) / 30);
+  border-radius: 50%;
+  position: absolute;
+  background: #3d3d3d;
+  top: calc(var(--size) / -8.5);
+  right: calc(var(--size) / 3);
+  opacity: 1;
+}
+
+.prize::after {
+  border: 1px solid #ffc300;
+  /* border: 1px solid #3d3d3d; */
+  display: block;
+  content: "";
+  width: calc(var(--size) / 30);
+  height: calc(var(--size) / 30);
+  border-radius: 50%;
+  position: absolute;
+  background: #3d3d3d;
+  /* background: #ffc300; */
+
+  right: calc(var(--size) / 20);
+  bottom: 0;
+}
+
+.prize-decoration {
+  display: inline-flex;
+  width: calc(var(--size) / 15);
+  height: calc(var(--size) / 15);
+  transform: rotate(5deg);
+  position: absolute;
+  background: #3d3d3d;
+  top: calc(var(--size) / -4);
+  right: calc(var(--size) / 4);
+  overflow: hidden;
+  border: 1px solid #3d3d3d;
+  background: -webkit-linear-gradient(
+    45deg,
+    rgb(255, 195, 0) 50%,
+    rgb(253, 244, 92) 50%
+  );
+  background: -moz-linear-gradient(
+    45deg,
+    rgb(255, 195, 0) 50%,
+    rgb(253, 244, 92) 50%
+  );
+  background: linear-gradient(
+    45deg,
+    rgb(255, 195, 0) 50%,
+    rgb(253, 244, 92) 50%
+  );
+}
+
+/* язычок */
+.ticker {
+  /* добавляем относительное позиционирование */
+  position: relative;
+  /* устанавливаем размеры */
+  left: calc(var(--size) / -13);
+  width: calc(var(--size) / 8.5);
+  height: calc(var(--size) / 11.5);
+  background-color: #40403f;
+  /* делаем так, чтобы язычок был выше колеса */
+  z-index: 3;
+  /* форма язычка */
+  clip-path: polygon(20% 0, 100% 50%, 20% 100%, 0% 50%);
+  /* устанавливаем точку, относительно которой будет вращаться язычок при движении колеса */
+  transform-origin: center left;
+  /* фон язычка */
+
+  background: -webkit-linear-gradient(0deg, #40403f 50%, #a5a5a5 50%);
+  background: -moz-linear-gradient(0deg, #40403f 50%, #a5a5a5 50%);
+  background: linear-gradient(0deg, #40403f 50%, #a5a5a5 50%);
+}
+
+/* кнопка запуска колеса */
+.btn-spin.btn {
+  border: none;
+  position: relative;
+  background-color: #9e1712;
+  color: white;
+  border-radius: 7px;
+  /* left: calc(var(--size) / -10); */
+}
+
+.btn-spin.btn:hover {
+  color: white;
+  background-color: #ff191b;
+}
+
+/* если кнопка нажата и неактивна */
+.btn-spin:disabled {
+  /* меняем внешний вид курсора */
+  cursor: progress;
+  /* делаем кнопку полупрозрачной */
+  opacity: 0.25;
+}
+
+/* анимация вращения */
+.is-spinning .spinner {
+  transition: transform 8s cubic-bezier(0.1, -0.01, 0, 1);
+}
+
+/* анимация движения язычка */
+.is-spinning .ticker {
+  animation: tick 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* эффект, когда колесо задевает язычок при вращении */
+@keyframes tick {
+  40% {
+    /* чуть поворачиваем язычок наверх в середине анимации */
+    transform: rotate(-12deg);
+  }
+}
+
+.prize .text {
+  font-weight: 400;
+  color: white;
+  color: #3d3d3d;
+  -webkit-text-stroke: 0.1px #3d3d3d;
+}
+
+/* анимируем выпавший сектор */
+.prize.selected {
+  opacity: 1;
+}
+
+.prize.selected .text {
+  /* делаем текст белым */
+  /* color: #3d3d3d; */
+  /* настраиваем длительность анимации */
+  -webkit-text-stroke-color: #3d3d3d;
+  animation: selected 800ms ease;
+  font-weight: bold;
+  text-shadow: 0px 0px 10px #ffc300;
+}
+
+/* настраиваем анимацию текста на выпавшем секторе по кадрам */
+@keyframes selected {
+  /* что происходит на 25% от начала анимации */
+  25% {
+    /* увеличиваем текст в 1,25 раза */
+    transform: scale(1.25);
+    /* добавляем тексту тень */
+    text-shadow: 1vmin 1vmin 0 hsla(0 0% 0% / 0.1);
+  }
+
+  40% {
+    transform: scale(0.92);
+    text-shadow: 0 0 0 hsla(0 0% 0% / 0.2);
+  }
+
+  60% {
+    transform: scale(1.02);
+    text-shadow: 0.5vmin 0.5vmin 0 hsla(0 0% 0% / 0.1);
+  }
+
+  75% {
+    transform: scale(0.98);
+  }
+
+  85% {
+    transform: scale(1);
+  }
+}
